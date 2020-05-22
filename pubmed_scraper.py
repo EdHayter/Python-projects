@@ -6,7 +6,7 @@ Collects: abstract, article type (review, clinical trial), authors, doi, first a
 last author, journal (shorthand), pubmed ID, title, year of publication
 Ed Hayter 21/05/20
 
-Edit: I realise there is an pubmed option to display abstract on main page, this would 
+Edit: I realise there is an pubmed option to display abstract on main page. This will 
 speed things up, when i get round to it! 
 """
 
@@ -15,11 +15,14 @@ from urllib.request import urlopen as ureq
 import pandas as pd
 
 #url. check '&page=1' is on the end.
-url = 'https://pubmed.ncbi.nlm.nih.gov/?term=circadian+and+cardi*+and+electrophysiology&format=abstract&size=200&page=1'
+url = 'https://pubmed.ncbi.nlm.nih.gov/?term=circadian&size=200&page=1'
 #name file to output
 output_file = 'test.csv'
 #how many pages of papers do you want? 
 number_pages_to_scrape = 1
+
+#initialise data as dataFrame
+data = pd.DataFrame()
 
 #loop over pages
 for page in range(number_pages_to_scrape):
@@ -32,8 +35,6 @@ for page in range(number_pages_to_scrape):
     uClient.close()
     #soup it
     page_soup = soup(page_html,'html.parser')
-    #initialise data as dataFrame
-    data = pd.DataFrame()
     #find all articles on page
     articles = page_soup.findAll('article',{'class':'labs-full-docsum'})
     #loop over articles on page 
