@@ -1,2 +1,2 @@
 # Python-projects
-Compilation of small projects to enhance python and ML skills
+Compilation of small projects to practise python and ML skills
